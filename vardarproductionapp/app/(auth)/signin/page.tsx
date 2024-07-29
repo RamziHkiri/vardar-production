@@ -1,5 +1,6 @@
 import React from 'react'
 import LoginForm from './components/LoginForm'
+import Link from 'next/link'
 
 export default function LoginPage() {
   return (
@@ -19,9 +20,9 @@ export default function LoginPage() {
 
           </div>
 
-          <h3 className='text-xl font-semibold text-center text-neutral-700' >
+          {/*<h3 className='text-xl font-semibold text-center text-neutral-700' >
             Se Connecter
-          </h3>
+          </h3>*/}
           <hr className='my-5' />
           <LoginForm />
         </div>
