@@ -10,7 +10,7 @@ export async function POST(request: Request) {
         if (!email || !password) {
             return new NextResponse("Missing email or password", { status: 500 });
         }
-        const userExists = await prisma?.user.findFirst({
+        const userExists = await prismadb.user.findFirst({
             where: {
                 email: email,
             },
