@@ -1,7 +1,7 @@
 import { AuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import prismadb from "../libs/prismadb"
-import bcrypt from "bcrypt"
+import bcrypt, { compare } from "bcrypt"
 
 export const authOptions: AuthOptions = {
     providers: [
@@ -18,13 +18,12 @@ export const authOptions: AuthOptions = {
                 const user = await prismadb.user.findFirst({
                     where: { email: credentials.email },
                 })
-                if (!user || !user.hashedPassword || user.id) {
+                if (!user || !user.hashedPassword || !user.id) {
                     throw new Error("User not registred yet")
                 }
                 const  currentHashedPassword = await bcrypt.hash(credentials.password,12);
-                if(currentHashedPassword!== user.hashedPassword){
-                    throw new Error("Invalid credentials")
-                }
+
+                bcrypt.compare(currentHashedPassword,user.hashedPassword);
 
                 return user;
             },

@@ -15,7 +15,7 @@ export async function POST(request: Request) {
                 email: email,
             },
         })
-        if (!userExists?.id) {
+        if (userExists?.id) {
             return new NextResponse("User already exists", { status: 500 });
         }
 

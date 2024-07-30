@@ -1,37 +1,41 @@
 "use client"
-
+import React, { useState } from 'react'
 import Input from '@/components/Input'
+import Link from 'next/link';
+import toast from 'react-hot-toast';
 import axios from 'axios';
 import { signIn } from 'next-auth/react';
-import Link from 'next/link';
-import React, { useState } from 'react'
-import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
-export default function LoginForm() {
+export default function RegisterForm() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
 
+    const router = useRouter();
 
-    const login = async () => {
+
+    const register = async () => {
         setLoading(true);
+        try {
+            await axios.post('/api/register', {
+                email,
+                password
+            });
 
-        const login = await signIn("credentials", {
-            email,
-            password,
-            redirect: false,
-        });
-
-        if (login?.ok) {
-            toast.success("Connexion réussie!");
-            window.location.assign("/");
-        } else if(login?.error) {
-            toast.error(login?.error);
+            toast.success("Votre compte a été créé avec succès")
+            router.push('/signin');
+        } catch (err: any) {
+            console.log(err);
+            toast.error(err?.response?.data)
+        } finally {
+            setLoading(false)
+            setEmail("");
+            setPassword("");
         }
-        setLoading(false);
-    }
 
+    }
 
     return (
         <div className='flex flex-col justify-center space-y-5 items-center'>
@@ -43,8 +47,8 @@ export default function LoginForm() {
                 <div className='text-sm text-center text-neutral-500 mt-5'>
                     Mot de passe <Link href={'/'} className='font-bold text-neutral-900'>Oublié</Link>
                 </div>
-                <div onClick={login} className='px-10 py-3 bg-blue-600 text-white rounded-xl disabled:opacity-70 cursor-pointer'>
-                    Se Connecter
+                <div onClick={register} className='px-10 py-3 bg-blue-600 text-white rounded-xl disabled:opacity-70 cursor-pointer'>
+                    Register
                 </div>
             </div>
 
