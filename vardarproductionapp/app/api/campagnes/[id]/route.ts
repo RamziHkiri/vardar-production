@@ -1,4 +1,4 @@
-import prismadb from "@/lib/prismadb";
+import prisma from "@/lib/prismadb";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
@@ -10,7 +10,7 @@ export async function GET(req: Request) {
   }
 
   try {
-    const campagne = await prismadb.campagne.findUnique({
+    const campagne = await prisma.campagne.findUnique({
       where: { id:id },
     });
 
