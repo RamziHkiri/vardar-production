@@ -1,12 +1,11 @@
 import React from 'react'
-import Link from 'next/link'
 import RegisterForm from './components/RegisterForm'
 
 export default function SignUpPage() {
   return (
     <div className=''>
-      <div className='flex items-center justify-center h-12 bg-blue-700 text-white font-semibold text-center'>
-        Login Page
+       <div className='flex items-center justify-center h-12 bg-blue-700 text-white font-semibold text-center'>
+        <p>© 2024 Vardar Production. All rights reserved.</p>
       </div>
       <div className="h-screen w-full flex items-center justify-center bg-gray-100">
         <div className='p-10 bg-white rounded-md shadow-lg w-full sm:w-3/4 lg:w-auto'>
