@@ -1,15 +1,12 @@
 import prisma from "@/lib/prismadb";
 import { NextResponse } from "next/server";
-
-{/*export async function POST(req: Request, res: Response){
-  const { nom, dateDebut, dateFin } = await req.json();
-  const newCampagne = await prismadb.campagne.create({
-    data: { nom, dateDebut, dateFin },
-  });
-  return new Response(JSON.stringify(newCampagne), { status: 201 });
-}*/}
-
-// Get all campagnes
+interface Campagne {
+  nom: string;
+  dateDebut?: string;
+  dateFin?: string;  
+  theatreId: string;
+  prix: number;
+}
 export async function GET(req: Request) {
   console.log("Campagnes");
   try {
@@ -23,25 +20,27 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { nom, dateDebut, dateFin } = body;
+    const { nom, lieux, dateDebut, dateFin, theatreId, prix, status } = body;
 
-    if (!nom || !dateDebut || !dateFin) {
+    if (!nom || !prix || !status || !lieux) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
     const newCampagne = await prisma.campagne.create({
       data: {
         nom,
-        dateDebut,
-        dateFin,
+        lieux,
+        dateDebut: dateDebut,
+        dateFin: dateFin,
+        theatreId,
+        prix,
+        status:status? status :'success',
       },
     });
 
     return NextResponse.json(newCampagne, { status: 201 });
   } catch (error) {
     console.error('Error creating campagne:', error);
-    return NextResponse.json({ error: 'Internal Server Error'}, { status: 500 });
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
-
-

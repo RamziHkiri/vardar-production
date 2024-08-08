@@ -1,6 +1,6 @@
 "use client"
 
-import Input from '@/components/Input'
+import Input from '@/components/forms/Input'
 import axios from 'axios';
 import { signIn, signOut } from 'next-auth/react';
 import Link from 'next/link';

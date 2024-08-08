@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import Input from '@/components/Input'
+import Input from '@/components/forms/Input'
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 import axios from 'axios';

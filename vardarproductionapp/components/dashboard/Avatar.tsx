@@ -27,8 +27,8 @@ const Avatar: React.FC<AvatarProps> = ({ src }) => {
   return <div className="flex flex-row gap-2">
     <FaUserCircle size={32} />
     <div className="flex flex-col">
-      <span className="text-xs font-semibold text-gray-700">User</span>
-      <span className="text-xs font-semibold text-gray-400">Admin</span>
+      <span className="text-xs font-semibold text-gray-700">Utilisateur</span>
+      <span className="text-xs font-semibold text-gray-400">Administrateur</span>
     </div>
   </div>
 };

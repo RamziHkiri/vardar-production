@@ -1,15 +1,16 @@
 "use client"
+import { GrPowerShutdown } from "react-icons/gr";
 
 import { signOut } from 'next-auth/react';
 import React from 'react'
 
 export default function LogoutBtn() {
     return (
-        <div className=' text-sm text-center py-2 px-5 rounded-xl text-white bg-blue-500 cursor-pointer'
+        <div className='border-2 border-slate-300 p-2 rounded-full '
             onClick={() => {
                 signOut();
             }}>
-            Déconnexion
+            <GrPowerShutdown size={18} className="stroke-neutral-600"/>
             </div>
     )
 }

@@ -10,6 +10,8 @@ const config = {
 	],
   prefix: "",
   theme: {
+    transparent: 'transparent',
+    current: 'currentColor',
     container: {
       center: true,
       padding: "2rem",
@@ -25,7 +27,7 @@ const config = {
         'text-lg': '3px 3px 6px rgba(0, 0, 0, 0.6)',
         'text-xl': '4px 4px 8px rgba(0, 0, 0, 0.7)',
         'text-2xl': '5px 5px 10px rgba(0, 0, 0, 0.8)',
-      },
+        },
       strokeWidth: {
         '2': '2px',
         '3': '3px',  // Customize as needed
@@ -66,11 +68,6 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -93,4 +90,4 @@ const config = {
   plugins: [require("tailwindcss-animate")],
 } satisfies Config
 
-export default config
+export default config;
