@@ -16,6 +16,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { GiTheaterCurtains } from "react-icons/gi";
 import logo from "@/app/images/logo.png"
 import Image from 'next/image'
+import { GrPowerShutdown } from 'react-icons/gr'
 
 const containerVariants = {
     close: {
@@ -121,6 +122,12 @@ export default function Navigation() {
                     <NavigationLink link='/campagnes' name='Gestion Campagnes' isOpen={isOpen}>
                         <ListBulletIcon className='stroke-inherit  min-w-6 w-6' />
                     </NavigationLink>
+                    <NavigationLink link='/theatres' name='liste des théâtre' isOpen={isOpen}>
+                        <ListBulletIcon className='stroke-inherit  min-w-6 w-6' />
+                    </NavigationLink>
+                    <NavigationLink link='/acteurs' name='Liste des acteurs' isOpen={isOpen}>
+                        <ListBulletIcon className='stroke-inherit  min-w-6 w-6' />
+                    </NavigationLink>
                     <NavigationLink link='/spectacles' name='Gestion Spectacles' isOpen={isOpen}>
                         <GiTheaterCurtains size={32} className='stroke-inherit  min-w-6 w-6' />
                     </NavigationLink>
@@ -133,12 +140,7 @@ export default function Navigation() {
                     <NavigationLink link='/calendrier' name='Calendrier' isOpen={isOpen}>
                         <CalendarDateRangeIcon className='stroke-inherit min-w-6 w-6' />
                     </NavigationLink>
-                    <NavigationLink link='/theatre' name='liste des théâtre' isOpen={isOpen}>
-                        <IoSettingsOutline size={32} className='stroke-inherit stroke-[0.75] min-w-6 w-6' />
-                    </NavigationLink>
-                    <NavigationLink link='/acteurs' name='Liste des acteurs' isOpen={isOpen}>
-                        <ListBulletIcon className='stroke-inherit  min-w-6 w-6' />
-                    </NavigationLink>
+
                 </div>
                 <div className='flex flex-col gap-2 bg-white rounded-xl'>
                     <NavigationLink link='#' name='Paramétres' isOpen={isOpen}>
@@ -146,7 +148,8 @@ export default function Navigation() {
                     </NavigationLink>
                     <div onClick={() => signOut()}>
                         <NavigationLink link='#' name='Déconnecter' isOpen={isOpen}>
-                            <ListBulletIcon className='stroke-inherit  min-w-6 w-6' />
+                            <GrPowerShutdown size={18} className="stroke-inherit stroke-[0.75] min-w-6 w-6'" />
+
                         </NavigationLink>
                     </div>
 
