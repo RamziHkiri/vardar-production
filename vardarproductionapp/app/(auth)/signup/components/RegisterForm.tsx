@@ -46,11 +46,11 @@ export default function RegisterForm() {
             <Input label='email' value={email} onChange={(e) => setEmail(e.target.value)} disabled={loading} />
             <Input label='mot de passe' type='password' value={password} onChange={(e) => setPassword(e.target.value)} disabled={loading} />
 
-            <div onClick={register} className='px-10 py-3 bg-blue-600 text-white rounded-xl disabled:opacity-70 cursor-pointer'>
+            <div onClick={register} className='px-10 py-3 bg-pink-300 text-white rounded-xl disabled:opacity-70 cursor-pointer'>
                 Register
             </div>
             <div className='text-sm text-center text-neutral-500 mt-5'>
-                Mot de passe <Link href={'/'} className='font-bold text-neutral-900'>Oublié</Link>
+                Vous avez deja un compte?! <Link href={'/'} className='font-bold text-neutral-900'>se Connecter</Link>
             </div>
         </div>
 

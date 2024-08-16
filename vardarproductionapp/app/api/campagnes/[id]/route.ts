@@ -12,7 +12,7 @@ export async function DELETE(
 }
 export async function PUT(req: Request) {
   const url = new URL(req.url);
-  const id = url.pathname.split('/').pop(); // Extracting the ID from the URL
+  const id = url.pathname.split('/').pop();
 
   try {
     const body = await req.json();

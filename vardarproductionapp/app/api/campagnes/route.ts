@@ -1,12 +1,5 @@
 import prisma from "@/lib/prismadb";
 import { NextResponse } from "next/server";
-interface Campagne {
-  nom: string;
-  dateDebut?: string;
-  dateFin?: string;  
-  theatreId: string;
-  prix: number;
-}
 export async function GET(req: Request) {
   console.log("Campagnes");
   try {
@@ -22,9 +15,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { nom, lieux, dateDebut, dateFin, theatreId, prix, status } = body;
 
-    if (!nom || !prix || !status || !lieux) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
-    }
+
 
     const newCampagne = await prisma.campagne.create({
       data: {

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 import { motion, useAnimationControls } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
@@ -13,7 +14,8 @@ import Avatar from './Avatar'
 import LanguageSelector from './LanguageSelector';
 import { IoSettingsOutline } from "react-icons/io5";
 import { GiTheaterCurtains } from "react-icons/gi";
-
+import logo from "@/app/images/logo.png"
+import Image from 'next/image'
 
 const containerVariants = {
     close: {
@@ -54,29 +56,29 @@ export default function Navigation() {
     }, [isOpen]);
 
     const toggleMenu = () => setIsOpen(!isOpen);
-
     return (
         <>
-            <div className='flex p-2 flex-row bg-slate-100 w-full fixed shadow justify-between items-center  pr-10'>
-                <div className='font-pacifico  flex space-x-2 items-center justify-center text-xl font-semibold text-center ml-8'>
-                    <h1 className=' text-red-700 '>
-                        Vardar
-                    </h1>
-                    <h1 className='text-blue-600'>
-                        Production
-                    </h1>
+            <div className='flex  flex-row bg-pink-200 w-full h-20 fixed shadow justify-between items-center pr-10'>
+                <div className='font-pacifico  flex space-x-2 items-center justify-center text-xl font-semibold text-center '>
+                    <Image className='bg-pink-100  pl-6 rounded-r-full p-2'
+                        src={logo}
+                        alt="Company Logo"
+                        width={200}
+                        height={50}
+                        priority={true}
+                    />
 
                 </div>
                 <SearchInput data={[]} />
                 <div className='flex flex-row justify-between gap-8 items-center'>
-                    <div className='ml-3 text-blue-600'>
+                    <div className='ml-3 text-pink-600'>
                         <IoNotificationsSharp size={24} color='blue-500' />
                     </div>
-                    <div className='ml-3 text-blue-600'>
-                        <Avatar/>
+                    <div className='ml-3 text-pink-600'>
+                        <Avatar />
                     </div>
                     <div className='ml-3'>
-                    <LanguageSelector/>
+                        <LanguageSelector />
                     </div>
                     <div className='ml-3'>
                         <LogoutBtn />
@@ -87,32 +89,32 @@ export default function Navigation() {
                 variants={containerVariants}
                 animate={containerControls}
                 initial="close"
-                className='bg-slate-100 fixed flex flex-col z-10 gap-10 py-5 px-4   top-14 left-0 h-full shadow-right-only'>
+                className='bg-pink-100 fixed flex flex-col z-10 gap-8 py-5 px-4   top-20 left-0 h-full shadow-right-only'>
 
-            
 
-                    <button className='flex flex-row w-full justify-end place-items-end ' onClick={toggleMenu}>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1}
-                            stroke="currentColor"
-                            className='w-7 h-7 stroke-white  stroke-2 p-1 rounded-2xl bg-blue-600  '>
-                            <motion.path
-                                variants={svgVariants}
-                                animate={svgControls}
-                                transition={{
-                                    duration: 0.5,
-                                    ease: "easeInOut"
-                                }}
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
-                        </svg>
-                    </button>
 
-                <div className='flex flex-col gap-3'>
+                <button className='flex flex-row w-full justify-end place-items-end ' onClick={toggleMenu}>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1}
+                        stroke="currentColor"
+                        className='w-7 h-7 stroke-white  stroke-2 p-1 rounded-2xl bg-pink-400  '>
+                        <motion.path
+                            variants={svgVariants}
+                            animate={svgControls}
+                            transition={{
+                                duration: 0.5,
+                                ease: "easeInOut"
+                            }}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
+
+                <div className='flex flex-col gap-2 bg-white rounded-xl'>
                     <NavigationLink link='/' name='Dashboard' isOpen={isOpen}>
                         <ChartBarIcon className='stroke-inherit  min-w-6 w-6' />
                     </NavigationLink>
@@ -125,14 +127,20 @@ export default function Navigation() {
                     <NavigationLink link='/prospects' name='Gestion Prospects' isOpen={isOpen}>
                         <ListBulletIcon className='stroke-inherit min-w-6 w-6' />
                     </NavigationLink>
-                    <NavigationLink link='/reporting'  name='Reporting Campagnes' isOpen={isOpen}>
+                    <NavigationLink link='/reporting' name='Reporting Campagnes' isOpen={isOpen}>
                         <ListBulletIcon className='stroke-inherit min-w-6 w-6' />
                     </NavigationLink>
-                    <NavigationLink link='#' name='Calendrier' isOpen={isOpen}>
+                    <NavigationLink link='/calendrier' name='Calendrier' isOpen={isOpen}>
                         <CalendarDateRangeIcon className='stroke-inherit min-w-6 w-6' />
                     </NavigationLink>
+                    <NavigationLink link='/theatre' name='liste des théâtre' isOpen={isOpen}>
+                        <IoSettingsOutline size={32} className='stroke-inherit stroke-[0.75] min-w-6 w-6' />
+                    </NavigationLink>
+                    <NavigationLink link='/acteurs' name='Liste des acteurs' isOpen={isOpen}>
+                        <ListBulletIcon className='stroke-inherit  min-w-6 w-6' />
+                    </NavigationLink>
                 </div>
-                <div className='flex flex-col gap-3'>
+                <div className='flex flex-col gap-2 bg-white rounded-xl'>
                     <NavigationLink link='#' name='Paramétres' isOpen={isOpen}>
                         <IoSettingsOutline size={32} className='stroke-inherit stroke-[0.75] min-w-6 w-6' />
                     </NavigationLink>

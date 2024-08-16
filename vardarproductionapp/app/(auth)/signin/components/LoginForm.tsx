@@ -42,15 +42,12 @@ export default function LoginForm() {
         <div className='flex flex-col justify-center space-y-5 items-center'>
             <Input label='email' value={email} onChange={(e) => setEmail(e.target.value)} disabled={loading} />
             <Input label='mot de passe' type='password' value={password} onChange={(e) => setPassword(e.target.value)} disabled={loading} />
-            <div onClick={login} className='px-10 py-3 bg-blue-600 text-white rounded-xl disabled:opacity-70 cursor-pointer'>
+            <div onClick={login} className='px-10 py-3 bg-pink-300 text-white rounded-xl disabled:opacity-70 cursor-pointer'>
                 Se Connecter
             </div>
             <div className='text-sm text-center text-neutral-500 mt-5'>
-                Mot de passe <Link href={'/'} className='font-bold text-neutral-900'>Oublié</Link>
+                Vous n&lsquo;êtes pas inscri ?! <Link href={'/signup'} className='font-bold text-neutral-900'>Créer un compte</Link>
             </div>
-
-
-
         </div>
 
     )
