@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import MultiSelect from '@/components/forms/MultiSelect';
 import TextArea from '@/components/forms/TextArea';
 import Button from '@/components/forms/Button';
+import RetourButton from '@/components/forms/RetourButton';
 
 export default function AddSpectacle() {
     const [titre, setTitre] = useState("");
@@ -34,7 +35,7 @@ export default function AddSpectacle() {
     }, []);
 
     const handleSubmit = async () => {
-        try { 
+        try {
             const response = await fetch('/api/spectacles', {
                 method: 'POST',
                 headers: {
@@ -58,13 +59,16 @@ export default function AddSpectacle() {
         } catch (error) {
             console.error('Error saving spectacle:', error);
         }
-       
+
     };
     console.log(acteur)
 
     return (
         <div className='p-5 w-max bg-white'>
-            <h3 className='font-semibold p-5'>Remplir les shamps suivants:</h3>
+            <div className='flex flex-row justify-between items-center'>
+                <h2 className="text-2xl font-bold mb-4">Créé nouveau spectacle:</h2>
+                <RetourButton link='/spectacles' label='Retour' />
+            </div>
             <div className='flex flex-row justify-around gap-6'>
                 <div className='flex flex-col gap-6 items-center px-6'>
                     <Input
@@ -77,12 +81,12 @@ export default function AddSpectacle() {
                     <MultiSelect
                         options={options}
                         value={acteur}
-                        onChange={(e) => setActeur(e.target.value)} 
+                        onChange={(e) => setActeur(e.target.value)}
                         placeholder="Sélectionnez des acteurs"
                     />
 
                     <TextArea
-                    label='Description'
+                        label='Description'
                         description={description}
                         setDescription={setDescription}
                         placeholder='Tapez la description du spectacle'

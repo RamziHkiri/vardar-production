@@ -12,7 +12,7 @@ interface Lieux {
 
 interface Campagne {
   id: string
-  lieux: Lieux[] 
+  lieux: Lieux[]
   nom: string
   dateDebut?: Date
   dateFin?: Date
@@ -89,9 +89,9 @@ const CampagnesList = () => {
               <tr className=' items-center hover:bg-blue-100 hover:bg-opacity-60 border-b' key={campagne.id}>
                 <td className="py-3 px-4 ">{campagne.id}</td>
                 <td className="py-2 px-4 ">
-                {campagne.lieux && campagne.lieux.length > 0 
-                ? `${campagne.lieux[0].country}, ${campagne.lieux[0].region}` : 'N/A'}
-    </td>
+                  {campagne.lieux && campagne.lieux.length > 0
+                    ? `${campagne.lieux[0].country}, ${campagne.lieux[0].region}` : 'N/A'}
+                </td>
                 <td className="py-2 px-4 ">{campagne.nom}</td>
                 <td className="py-2 px-4 ">{campagne.dateDebut ? new Date(campagne.dateDebut).toLocaleDateString() : 'N/A'}</td>
                 <td className="py-2 px-4 ">{campagne.dateFin ? new Date(campagne.dateFin).toLocaleDateString() : 'N/A'}</td>

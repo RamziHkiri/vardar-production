@@ -19,7 +19,7 @@ model User {
 
 model Campagne {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
-  lieux     Json 
+  lieux     Json
   nom       String
   dateDebut DateTime?
   dateFin   DateTime?
@@ -32,7 +32,7 @@ model Campagne {
 model Theatre {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   nom      String
-  adresse  String
+  lieux    Json
   capacite Int
 
   Campagne Campagne[]

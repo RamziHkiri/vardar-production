@@ -1,5 +1,5 @@
 
-import MultipleSelect from '@/components/forms/MultipleSelect'
+import MultipleSelect from '@/components/dashboard/MultipleSelect'
 import React from 'react'
 
 export default function CampagnesDetails() {

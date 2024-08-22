@@ -15,7 +15,7 @@ export default function Acteurs() {
                     <div
                         className='flex flex-row justify-center items-center gap-2 bg-pink-400 text-white text-center w-56 rounded-md text-sm cursor-pointer'
                     >
-                        <Link className='flex flex-row justify-center items-center gap-2' href={"/spectacles/create"}>
+                        <Link className='flex flex-row justify-center items-center gap-2' href={"/acteurs/create"}>
                             <span className='text-2xl'>+</span>
                             <p>Ajouter Acteur</p>
                         </Link>

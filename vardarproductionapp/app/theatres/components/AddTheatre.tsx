@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import MultiSelect from '@/components/forms/MultiSelect';
 import TextArea from '@/components/forms/TextArea';
 import Button from '@/components/forms/Button';
+import RetourButton from '@/components/forms/RetourButton';
 
 export default function AddTheatre() {
     const [nom, setNom] = useState("");
@@ -65,6 +66,10 @@ export default function AddTheatre() {
 
     return (
         <div className='p-5 w-max bg-white'>
+            <div className='flex flex-row justify-between items-center'>
+                <h2 className="text-2xl font-bold mb-4">Ajouter nouveau Théâtre :</h2>
+                <RetourButton link='/spectacles' label='Retour' />
+            </div>
             <h3 className='font-semibold p-5'>Remplir les shamps suivants</h3>
             <div className='flex flex-row justify-around gap-6'>
                 <div className='flex flex-col gap-6 items-center px-6'>

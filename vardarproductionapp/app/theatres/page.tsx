@@ -34,10 +34,6 @@ export default function Theatre() {
                         </Link>
 
                     </div>
-
-                    {showPopup && (
-                        <CreateCampagnePopup onClose={handlePopupClose} /> // Render the Popup component when showPopup is true
-                    )}
                 </div>
                 <div>
                     <ListTheatre />

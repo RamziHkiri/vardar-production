@@ -13,7 +13,7 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { id,
+    const {
         nom,
         prenom,
         dateNaissance,
@@ -28,13 +28,12 @@ export async function POST(req: Request) {
 
     const newTheatre = await prisma.acteur.create({
       data: {
-        id,
         nom,
         prenom,
         dateNaissance: dateNaissance,
         nationalite,
         bio,
-        spectacleIds,
+        spectacleIds:spectacleIds? spectacleIds : [],
       },
     });
 

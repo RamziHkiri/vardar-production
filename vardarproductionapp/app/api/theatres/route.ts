@@ -15,16 +15,16 @@ export async function GET(req: Request) {
   export async function POST(req: Request) {
     try {
       const body = await req.json();
-      const { nom, adresse, capacite } = body;
+      const { nom, lieux, capacite } = body;
   
-      if (!nom || !adresse || !capacite) {
+      if (!nom || !lieux || !capacite) {
         return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
       }
   
       const newCampagne = await prisma.theatre.create({
         data: {
           nom,
-          adresse,
+          lieux,
           capacite,
         },
       });
