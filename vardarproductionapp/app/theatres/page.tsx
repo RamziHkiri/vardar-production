@@ -2,7 +2,6 @@
 import Container from '@/components/Container'
 import Title from '@/components/Title'
 import React, { useState } from 'react'
-import CreateCampagnePopup from '@/components/createCampagnePopup/CreateCampagnePopup';
 import ListTheatre from './components/ListTheatre';
 import Link from 'next/link';
 
