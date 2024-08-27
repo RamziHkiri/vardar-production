@@ -50,6 +50,7 @@ export default function AddSpectacle() {
             setActeur('')
             setTitre('')
             setDescription('')
+
             const result = await response.json();
             if (result) {
                 console.log('Spectacle added:', result);
@@ -59,7 +60,6 @@ export default function AddSpectacle() {
         } catch (error) {
             console.error('Error saving spectacle:', error);
         }
-
     };
     console.log(acteur)
 

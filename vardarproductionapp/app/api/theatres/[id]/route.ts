@@ -18,7 +18,7 @@ export async function PUT(req: Request) {
     const body = await req.json();
     const {
         nom,
-        adresse,
+        lieux,
         capacite,
     } = body;
 
@@ -26,7 +26,7 @@ export async function PUT(req: Request) {
       where: { id: id },
       data: {
         nom,
-        adresse,
+        lieux,
         capacite,
       },
     });

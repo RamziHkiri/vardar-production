@@ -33,15 +33,12 @@ const CampagnesList = () => {
       try {
         setLoading(true)
         const response = await axios.get('/api/campagnes', {
-          params: { page: currentPage }
+          params: { page: currentPage, limit: 8 } // Fetch 8 elements per page
         })
-        setCampagnes(response.data || [])
-        if ((response.data).length > 0) {
-          setTotalPages(Math.ceil(response.data.length / 8));
-        }
-        else {
-          setTotalPages(0);
-        }
+        
+        setCampagnes(response.data.campagnes || []) // Assuming response.data.campagnes contains the campagnes array
+        setTotalPages(Math.ceil((response.data.total) / 8)) // Assuming response.data.total contains the total number of campagnes
+        
         setLoading(false);
       } catch (error) {
         setError('Error fetching campagnes.')
@@ -64,6 +61,7 @@ const CampagnesList = () => {
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
   }
+  console.log(campagnes)
 
   if (loading) return <div>Loading...</div>
   if (error) return <div>{error}</div>
@@ -72,7 +70,7 @@ const CampagnesList = () => {
     <div className="p-4 rounded-xl">
       <table className="min-w-full bg-white border border-gray-200 text-sm">
         <thead>
-          <tr className='bg-pink-300 text-white rounded  text-start'>
+          <tr className='bg-pink-300 text-white rounded text-start'>
             <th className="py-2 px-4 border-b">ID</th>
             <th className="py-2 px-4 border-b">Lieux</th>
             <th className="py-2 px-4 border-b">Nom</th>
@@ -86,18 +84,18 @@ const CampagnesList = () => {
         <tbody>
           {campagnes.length > 0 ? (
             campagnes.map(campagne => (
-              <tr className=' items-center hover:bg-blue-100 hover:bg-opacity-60 border-b' key={campagne.id}>
-                <td className="py-3 px-4 ">{campagne.id}</td>
-                <td className="py-2 px-4 ">
+              <tr className='items-center hover:bg-blue-100 hover:bg-opacity-60 border-b' key={campagne.id}>
+                <td className="py-3 px-4">{campagne.id}</td>
+                <td className="py-2 px-4">
                   {campagne.lieux && campagne.lieux.length > 0
                     ? `${campagne.lieux[0].country}, ${campagne.lieux[0].region}` : 'N/A'}
                 </td>
-                <td className="py-2 px-4 ">{campagne.nom}</td>
-                <td className="py-2 px-4 ">{campagne.dateDebut ? new Date(campagne.dateDebut).toLocaleDateString() : 'N/A'}</td>
-                <td className="py-2 px-4 ">{campagne.dateFin ? new Date(campagne.dateFin).toLocaleDateString() : 'N/A'}</td>
-                <td className="py-2 px-4 ">{campagne.prix.toFixed(2)}</td>
-                <td className="py-2 px-4 ">{campagne.status}</td>
-                <td className="flex flex-row items-center  justify-center gap-4 py-4 px-4 ">
+                <td className="py-2 px-4">{campagne.nom}</td>
+                <td className="py-2 px-4">{campagne.dateDebut ? new Date(campagne.dateDebut).toLocaleDateString() : 'N/A'}</td>
+                <td className="py-2 px-4">{campagne.dateFin ? new Date(campagne.dateFin).toLocaleDateString() : 'N/A'}</td>
+                <td className="py-2 px-4">{campagne.prix.toFixed(2)}</td>
+                <td className="py-2 px-4">{campagne.status}</td>
+                <td className="flex flex-row items-center justify-center gap-4 py-4 px-4">
                   <Link href={`/campagnes/update/${campagne.id}`}>
                     <div className="text-black hover:underline">
                       <MdOutlineUpdate size={24} />
@@ -125,7 +123,7 @@ const CampagnesList = () => {
           disabled={currentPage === 1}
           className="bg-pink-400 w-20 text-white text-sm px-2 py-2 rounded"
         >
-          précédent
+          Précédent
         </button>
         <span>Page {currentPage} of {totalPages}</span>
         <button

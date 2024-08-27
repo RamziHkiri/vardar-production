@@ -1,11 +1,9 @@
 "use client"
 import Input from '@/components/forms/Input';
 import React, { useState, useEffect } from 'react';
-import TextArea from '@/components/forms/TextArea';
 import Button from '@/components/forms/Button';
 import RetourButton from '@/components/forms/RetourButton';
 import MultiSelect from '@/components/forms/MultiSelect';
-import AddActeur from '@/app/acteurs/components/AddActeur';
 import AddSpectacle from '@/app/spectacles/components/AddSpectacle';
 import AddTheatre from '@/app/theatres/components/AddTheatre';
 
@@ -61,7 +59,7 @@ export default function AddCampagne() {
         };
 
         fetchSpectacles();
-    }, []);
+    }, [popSpectacle]);
 
     useEffect(() => {
         const fetchTheatres = async () => {
@@ -103,7 +101,7 @@ export default function AddCampagne() {
     useEffect(() => {
 
 
-    }, [pays, ville])
+    }, [pays, ville, popTheatre])
 
     const handleSubmit = async () => {
         try {
@@ -148,7 +146,7 @@ export default function AddCampagne() {
         <div className='p-5 w-max bg-white'>
             <div className='flex flex-row justify-between items-center'>
                 <h2 className="text-2xl font-bold mb-4">Créer une nouvelle campagne :</h2>
-                <RetourButton link='/spectacles' label='Retour' />
+                <RetourButton link='/campagnes' label='Retour' />
             </div>
             <h3 className='font-semibold p-5'>Remplir les shamps suivants</h3>
             <div className='flex flex-row justify-around gap-6'>

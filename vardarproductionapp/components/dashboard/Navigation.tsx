@@ -5,18 +5,21 @@ import React, { useEffect, useState } from 'react'
 import NavigationLink from './NavigationLink'
 import { ChartBarIcon } from '@heroicons/react/24/outline'
 import { ListBulletIcon } from '@heroicons/react/24/outline'
-import { CalendarDateRangeIcon } from '@heroicons/react/24/outline'
 import { signOut } from 'next-auth/react'
 import SearchInput from '../forms/SearchInput'
 import LogoutBtn from '../LogoutBtn'
-import { IoNotificationsSharp } from "react-icons/io5";
+import { IoNotificationsSharp, IoCalendarNumberOutline } from "react-icons/io5";
 import Avatar from './Avatar'
 import LanguageSelector from './LanguageSelector';
 import { IoSettingsOutline } from "react-icons/io5";
-import { GiTheaterCurtains } from "react-icons/gi";
+import { GiTheaterCurtains, GiSpectacles, GiClown } from "react-icons/gi";
 import logo from "@/app/images/logo.png"
 import Image from 'next/image'
 import { GrPowerShutdown } from 'react-icons/gr'
+import { TbMasksTheater } from "react-icons/tb";
+import { BsFileEarmarkSpreadsheet } from "react-icons/bs";
+
+import { FaUsersBetweenLines } from "react-icons/fa6";
 
 const containerVariants = {
     close: {
@@ -115,30 +118,30 @@ export default function Navigation() {
                     </svg>
                 </button>
 
-                <div className='flex flex-col gap-2 bg-white rounded-xl'>
+                <div className='flex flex-col gap-2 '>
                     <NavigationLink link='/' name='Dashboard' isOpen={isOpen}>
                         <ChartBarIcon className='stroke-inherit  min-w-6 w-6' />
                     </NavigationLink>
                     <NavigationLink link='/campagnes' name='Gestion Campagnes' isOpen={isOpen}>
-                        <ListBulletIcon className='stroke-inherit  min-w-6 w-6' />
+                        <TbMasksTheater size={32} className='stroke-inherit  min-w-6 w-6' />
                     </NavigationLink>
                     <NavigationLink link='/theatres' name='liste des théâtre' isOpen={isOpen}>
                         <ListBulletIcon className='stroke-inherit  min-w-6 w-6' />
                     </NavigationLink>
                     <NavigationLink link='/acteurs' name='Liste des acteurs' isOpen={isOpen}>
-                        <ListBulletIcon className='stroke-inherit  min-w-6 w-6' />
+                        <GiClown size={32} className='stroke-inherit  min-w-6 w-6' />
                     </NavigationLink>
                     <NavigationLink link='/spectacles' name='Gestion Spectacles' isOpen={isOpen}>
-                        <GiTheaterCurtains size={32} className='stroke-inherit  min-w-6 w-6' />
+                        <GiSpectacles size={32} className='stroke-inherit  min-w-6 w-6' />
                     </NavigationLink>
                     <NavigationLink link='/prospects' name='Gestion Prospects' isOpen={isOpen}>
-                        <ListBulletIcon className='stroke-inherit min-w-6 w-6' />
+                        <FaUsersBetweenLines size={32} className='stroke-inherit min-w-6 w-6' />
                     </NavigationLink>
                     <NavigationLink link='/reporting' name='Reporting Campagnes' isOpen={isOpen}>
-                        <ListBulletIcon className='stroke-inherit min-w-6 w-6' />
+                        <BsFileEarmarkSpreadsheet size={32} className='stroke-inherit min-w-6 w-6' />
                     </NavigationLink>
                     <NavigationLink link='/calendrier' name='Calendrier' isOpen={isOpen}>
-                        <CalendarDateRangeIcon className='stroke-inherit min-w-6 w-6' />
+                        <IoCalendarNumberOutline size={32} className='stroke-inherit min-w-6 w-6' />
                     </NavigationLink>
 
                 </div>
