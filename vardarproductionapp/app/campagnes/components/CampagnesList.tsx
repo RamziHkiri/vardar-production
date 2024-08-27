@@ -27,6 +27,7 @@ const CampagnesList = () => {
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
+  const [selectedCampagne, setSelectedCampagne] = useState<Campagne | null>(null)
 
   useEffect(() => {
     const fetchCampagnes = async () => {
@@ -35,10 +36,10 @@ const CampagnesList = () => {
         const response = await axios.get('/api/campagnes', {
           params: { page: currentPage, limit: 8 } // Fetch 8 elements per page
         })
-        
+
         setCampagnes(response.data.campagnes || []) // Assuming response.data.campagnes contains the campagnes array
         setTotalPages(Math.ceil((response.data.total) / 8)) // Assuming response.data.total contains the total number of campagnes
-        
+
         setLoading(false);
       } catch (error) {
         setError('Error fetching campagnes.')
@@ -58,10 +59,14 @@ const CampagnesList = () => {
     }
   }
 
+  const handleRowClick = (campagne: Campagne) => {
+    console.log("More information about the campagne:", campagne)
+    setSelectedCampagne(campagne)
+  }
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
   }
-  console.log(campagnes)
 
   if (loading) return <div>Loading...</div>
   if (error) return <div>{error}</div>
@@ -84,7 +89,11 @@ const CampagnesList = () => {
         <tbody>
           {campagnes.length > 0 ? (
             campagnes.map(campagne => (
-              <tr className='items-center hover:bg-blue-100 hover:bg-opacity-60 border-b' key={campagne.id}>
+              <tr
+                className='items-center hover:bg-blue-100 hover:bg-opacity-60 border-b cursor-pointer'
+                key={campagne.id}
+                onClick={() => handleRowClick(campagne)}
+              >
                 <td className="py-3 px-4">{campagne.id}</td>
                 <td className="py-2 px-4">
                   {campagne.lieux && campagne.lieux.length > 0
@@ -102,7 +111,10 @@ const CampagnesList = () => {
                     </div>
                   </Link>
                   <div
-                    onClick={() => handleDelete(campagne.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();  // Prevent triggering row click
+                      handleDelete(campagne.id);
+                    }}
                     className="text-red-600 hover:underline"
                   >
                     <RiDeleteBin6Line size={24} />
@@ -112,11 +124,23 @@ const CampagnesList = () => {
             ))
           ) : (
             <tr>
-              <td colSpan={7} className="py-2 px-4 text-center">No campagnes available</td>
+              <td colSpan={8} className="py-2 px-4 text-center">No campagnes available</td>
             </tr>
           )}
         </tbody>
       </table>
+      {selectedCampagne && (
+        <div className="mt-4 p-4 bg-gray-100 rounded">
+          <h2 className="font-bold text-lg">More Information</h2>
+          <p><strong>ID:</strong> {selectedCampagne.id}</p>
+          <p><strong>Nom:</strong> {selectedCampagne.nom}</p>
+          <p><strong>Lieux:</strong> {selectedCampagne.lieux.map(lieu => `${lieu.country}, ${lieu.region}`).join('; ')}</p>
+          <p><strong>Date Début:</strong> {selectedCampagne.dateDebut ? new Date(selectedCampagne.dateDebut).toLocaleDateString() : 'N/A'}</p>
+          <p><strong>Date Fin:</strong> {selectedCampagne.dateFin ? new Date(selectedCampagne.dateFin).toLocaleDateString() : 'N/A'}</p>
+          <p><strong>Prix:</strong> {selectedCampagne.prix.toFixed(2)}</p>
+          <p><strong>Status:</strong> {selectedCampagne.status}</p>
+        </div>
+      )}
       <div className="mt-4 flex justify-between items-center">
         <button
           onClick={() => handlePageChange(currentPage - 1)}
