@@ -18,8 +18,8 @@ export interface Campagne {
   id: string;
   lieux: string;
   nom: string;
-  dateDebut?: Date;
-  dateFin?: Date;
+  dateDebut: Date;
+  dateFin: Date;
   theatreId: string;
   theatre: Theatre;
   prix: number;

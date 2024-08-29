@@ -43,15 +43,16 @@ export default function AddCampagne() {
         const fetchSpectacles = async () => {
             try {
                 const response = await fetch('/api/spectacles');
-                const spectacles = await response.json();
-                if (spectacles) {
-                    const options = spectacles.map((spectacle: any) => ({
+                const data = await response.json();
+                console.log(data.spectacles);
+                if (data.spectacles) {
+                    const options = data.spectacles.map((spectacle: any) => ({
                         value: spectacle.id,
                         label: `${spectacle.titre}`,
                     }));
                     setSpectacleList(options);
                 } else {
-                    console.error('Error fetching acteurs:', spectacles);
+                    console.error('Error fetching acteurs:', data);
                 }
             } catch (error) {
                 console.error('Error fetching acteurs:', error);

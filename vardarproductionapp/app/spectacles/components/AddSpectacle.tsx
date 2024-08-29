@@ -15,16 +15,16 @@ export default function AddSpectacle() {
         const fetchActeurs = async () => {
             try {
                 const response = await fetch('/api/acteurs');
-                const acteurs = await response.json();
-                console.log(acteurs);
-                if (acteurs) {
-                    const options = acteurs.map((acteur: any) => ({
-                        value: acteur.id, // Store the ID as the value
-                        label: `${acteur.nom} ${acteur.prenom}`, // Display nom + prenom
+                const data = await response.json();
+                console.log(data.acteurs);
+                if (data.acteurs) {
+                    const options = data.acteurs.map((acteur: any) => ({
+                        value: acteur.id, 
+                        label: `${acteur.nom} ${acteur.prenom}`, 
                     }));
                     setOptions(options);
                 } else {
-                    console.error('Error fetching acteurs:', acteurs);
+                    console.error('Error fetching acteurs:', data);
                 }
             } catch (error) {
                 console.error('Error fetching acteurs:', error);

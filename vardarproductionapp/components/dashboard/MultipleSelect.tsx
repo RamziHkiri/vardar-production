@@ -29,7 +29,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({ options, onChange }) => {
   };
 
   return (
-    <div className="relative  inline-block">
+    <div className="  inline-block">
       <button
         onClick={toggleDropdown}
         className="flex flex-row justify-between border text-neutral-900 font-semibold p-2 w-60 rounded-xl border-pink-400 bg-neutral-300"
