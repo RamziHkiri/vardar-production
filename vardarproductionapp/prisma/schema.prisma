@@ -57,6 +57,13 @@ model Spectacle {
   Acteur      Acteur[]
 }
 
+model FichierProspects {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  pays    String
+  ville   String
+  fileURL String?
+}
+
 type lieux {
   country String
   region  String
