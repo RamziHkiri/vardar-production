@@ -26,7 +26,7 @@ export default function HorizontalBar() {
 		data: [{
 			type: "stackedBar100",
 			color: "#8003a2",
-			name: "Women",
+			name: "Confirmé",
 			showInLegend: false,
 			indexLabel: "{y}",
 			indexLabelFontColor: "white",
@@ -39,7 +39,7 @@ export default function HorizontalBar() {
 		}, {
 			type: "stackedBar100",
 			color: "#e3a9f2",
-			name: "Men",
+			name: " Non Confirmé",
 			showInLegend: false,
 			indexLabel: "{y}",
 			indexLabelFontColor: "white",
@@ -50,19 +50,19 @@ export default function HorizontalBar() {
 				{ label: "Nbr Prospects Des Campagnes Terminée", y: 10 },
 			]
 		}],
-		
+
 		height: 300,
 		backgroundColor: "transparent",
 		axisY: {
 			suffix: "%",
-			gridThickness: 0,    
+			gridThickness: 0,
 		},
 	};
 
 	return (
-			<div> {/* Ensure chart respects these dimensions */}
-				<CanvasJSChart options={options} />
-			</div>
+		<div className=''>
+			<CanvasJSChart options={options} />
+		</div>
 	);
 
 }

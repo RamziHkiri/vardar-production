@@ -72,7 +72,7 @@ const CampagnesList = () => {
   if (error) return <div>{error}</div>
 
   return (
-    <div className="p-4 rounded-xl">
+    <div className="p-4 rounded-xl w-full">
       <table className="min-w-full bg-white border border-gray-200 text-sm text-left">
         <thead>
           <tr className='bg-pink-300 text-white'>
