@@ -10,6 +10,11 @@ import { FaUsers } from "react-icons/fa";
 import { FaChartBar } from "react-icons/fa";
 import CampagneStatus from '@/components/dashboard/charts/CampagneStatus';
 import CampagnesDetails from '@/components/dashboard/charts/CampagnesDetails';
+import dynamic from 'next/dynamic';
+
+const HorizontalBar = dynamic(() => import('@/components/dashboard/charts/HorizontalBar'), {
+  ssr: false,
+});
 
 export default async function HomePage() {
 
@@ -24,8 +29,8 @@ export default async function HomePage() {
             <div className='flex flex-row gap-5 w-full'>
 
                 <div className='w-3/4 border-neutral-500/50 flex flex-col gap-3  '>
-                    <div className='bg-slate-100 rounded border p-3 h-96'>
-                        <p>Statestique d'efficacité</p>
+                    <div className='bg-slate-100 rounded-xl border p-3 h-96'>
+                        <HorizontalBar/>
                     </div>
                     <div className='flex flex-row w-full gap-5 mt-3'>
                         <StaticCard title='Nbr Des Prospects' total={3400}  >

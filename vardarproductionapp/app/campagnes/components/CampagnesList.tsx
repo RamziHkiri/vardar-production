@@ -73,9 +73,9 @@ const CampagnesList = () => {
 
   return (
     <div className="p-4 rounded-xl">
-      <table className="min-w-full bg-white border border-gray-200 text-sm">
+      <table className="min-w-full bg-white border border-gray-200 text-sm text-left">
         <thead>
-          <tr className='bg-pink-300 text-white rounded text-start'>
+          <tr className='bg-pink-300 text-white'>
             <th className="py-2 px-4 border-b">ID</th>
             <th className="py-2 px-4 border-b">Lieux</th>
             <th className="py-2 px-4 border-b">Nom</th>

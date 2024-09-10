@@ -41,7 +41,7 @@ const FilesList: React.FC = () => {
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white border border-gray-300">
         <thead>
-          <tr className="bg-gray-100 border-b">
+          <tr className="bg-pink-400 border-b text-white">
             <th className="py-2 px-4 text-left">Pays</th>
             <th className="py-2 px-4 text-left">Ville</th>
             <th className="py-2 px-4 text-left">File URL</th>
@@ -54,7 +54,7 @@ const FilesList: React.FC = () => {
               <td className="py-2 px-4">{file.ville}</td>
               <td className="py-2 px-4">
                 <a href={file.fileURL} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-                  Download File
+                  Afficher le contenu
                 </a>
               </td>
             </tr>

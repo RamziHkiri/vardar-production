@@ -27,10 +27,9 @@ const ListActeurs = () => {
             try {
                 setLoading(true)
                 const response = await axios.get('/api/acteurs', {
-                    params: { page: currentPage, limit: 8 } // Fetch 8 elements per page
+                    params: { page: currentPage, limit: 8 } 
                 })
 
-                // Assuming response.data.acteurs contains the acteurs array and response.data.total contains the total number of acteurs
                 setActeurs(response.data.acteurs || [])
                 setTotalPages(Math.ceil(response.data.total / 8))
 
