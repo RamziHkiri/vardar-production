@@ -12,6 +12,7 @@ import CampagneStatus from '@/components/dashboard/charts/CampagneStatus';
 import CampagnesDetails from '@/components/dashboard/charts/CampagnesDetails';
 import dynamic from 'next/dynamic';
 import CampagnesList from '../campagnes/components/CampagnesList';
+import MeilleurCampagnes from '@/components/dashboard/charts/MeilleurCampagnes';
 const HorizontalBar = dynamic(() => import('@/components/dashboard/charts/HorizontalBar'), {
     ssr: false,
 });
@@ -58,7 +59,10 @@ export default async function HomePage() {
                 </div>
             </div>
             <div className=' flex flex-row gap-5 w-full'>
-                <div className='order-neutral-500/50 bg-slate-100 rounded border h-60 w-1/2'></div>
+                <div className='p-3 order-neutral-500/50 bg-slate-100 rounded border h-60 w-1/2'>
+                    <h3 className='text-lg font-semibold'> List des meilleurs campagnes par total revenue:</h3>
+                    <MeilleurCampagnes />
+                </div>
                 <div className='order-neutral-500/50 bg-slate-100 rounded border h-60 w-1/2'>
                     <RoundChart />
                 </div>

@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "endorphineprod-71",
+    "production": "endorphineprod-71"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}

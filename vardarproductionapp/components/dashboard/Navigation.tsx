@@ -62,7 +62,7 @@ export default function Navigation() {
     const toggleMenu = () => setIsOpen(!isOpen);
     return (
         <>
-            <div className='flex  flex-row bg-pink-200 w-full h-20 fixed shadow justify-between items-center pr-10'>
+            <div className='flex  flex-row bg-pink-200 w-full h-20 fixed shadow justify-between items-center pr-10 z-10'>
                 <div className='font-pacifico  flex space-x-2 items-center justify-center text-xl font-semibold text-center '>
                     <Image className='bg-pink-100  pl-6 rounded-r-full p-2'
                         src={logo}

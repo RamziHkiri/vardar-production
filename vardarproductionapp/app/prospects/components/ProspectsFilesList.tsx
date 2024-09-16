@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import Button from "@/components/forms/Button";
 import { useDropzone } from "react-dropzone";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import firebaseApp from "@/lib/firebase"; // Adjust the import path as necessary
+import firebaseApp from "@/lib/firebase"; 
 import Input from "@/components/forms/Input";
 
 const ProspectsFilesList: React.FC = () => {
@@ -47,7 +47,7 @@ const ProspectsFilesList: React.FC = () => {
       setDownloadURL(url);
       console.log("File uploaded successfully:", url);
 
-      // After successfully uploading to Firebase, create metadata in MongoDB
+      
       await createFileMetadataInDB(url);
     } catch (error) {
       console.error("Error uploading file:", error);

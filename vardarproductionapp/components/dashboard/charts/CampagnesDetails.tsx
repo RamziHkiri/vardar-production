@@ -14,6 +14,9 @@ export default function CampagnesDetails() {
                 <p className=' text-md '>Trier par: </p>
                 <MultipleSelect />
             </div>
+            <div>
+                
+            </div>
         </div>
         </>
         
