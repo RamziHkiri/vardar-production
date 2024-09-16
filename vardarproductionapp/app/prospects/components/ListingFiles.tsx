@@ -56,10 +56,10 @@ const FilesList: React.FC = () => {
       const csvText = await response.text();
       console.log(csvText);
 
-      Papa.parse<Prospect>(csvText, {
+      Papa.parse(csvText, {
         header: true,
         skipEmptyLines: true,
-        complete: (result) => {
+        complete: (result: any) => {
           setProspects(result.data);
           console.log(result.data);
           setSelectedFile(file);
