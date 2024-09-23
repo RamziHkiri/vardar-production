@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "target": "ES2022", // ou "ES2015" au minimum
     "typeRoots": ["./node_modules/@types", "./types"],
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
