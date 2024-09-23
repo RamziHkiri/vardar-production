@@ -3,6 +3,11 @@ import Title from '@/components/Title';
 import React from 'react';
 import ListingFiles from './components/ListingFiles';
 import ProspectsFilesList from './components/ProspectsFilesList';
+import dynamic from 'next/dynamic';
+
+const DynamicTextToSpeechComponent = dynamic(() => import( './components/TextToSpeechForm'), {
+  ssr: false, // This ensures the component only renders on the client side
+});
 
 export default function page() {
   return (
@@ -17,6 +22,8 @@ export default function page() {
         <div>
           <ListingFiles/>
         </div>
+        <div>
+       </div>
       </div>
     </Container>
   )
