@@ -7,7 +7,7 @@ import ListActeurs from './components/ListActeurs'
 export default function Acteurs() {
     return (
         <Container>
-            <Title title='Spectacles' />
+            <Title title='Acteurs' />
             <div className=' bg-white h-max'>
                 <div className='flex flex-row justify-between items-center m-4 pb-1 '>
                     <div>filtre</div>

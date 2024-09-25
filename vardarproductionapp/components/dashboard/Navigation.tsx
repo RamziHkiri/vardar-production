@@ -20,6 +20,7 @@ import { TbMasksTheater } from "react-icons/tb";
 import { BsFileEarmarkSpreadsheet } from "react-icons/bs";
 
 import { FaUsersBetweenLines } from "react-icons/fa6";
+import Link from 'next/link'
 
 const containerVariants = {
     close: {
@@ -64,13 +65,16 @@ export default function Navigation() {
         <>
             <div className='flex  flex-row bg-pink-200 w-full h-20 fixed shadow justify-between items-center pr-10 z-10'>
                 <div className='font-pacifico  flex space-x-2 items-center justify-center text-xl font-semibold text-center '>
-                    <Image className='bg-pink-100  pl-6 rounded-r-full p-2'
-                        src={logo}
-                        alt="Company Logo"
-                        width={200}
-                        height={50}
-                        priority={true}
-                    />
+                    <Link href="/" passHref>
+                        <Image
+                            className="bg-pink-100 pl-6 rounded-r-full p-2"
+                            src={logo}
+                            alt="Company Logo"
+                            width={200}
+                            height={50}
+                            priority={true}
+                        />
+                    </Link>
 
                 </div>
                 <SearchInput data={[]} />

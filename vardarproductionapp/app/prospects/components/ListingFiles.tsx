@@ -36,6 +36,11 @@ const FilesList: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<FileType | null>(null);
   const [selectedProspect, setSelectedProspect] = useState<Prospect | null>(null);
 
+  const [text, setText] = useState('');
+  const [audioFile, setAudioFile] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -70,6 +75,42 @@ const FilesList: React.FC = () => {
     fetchProspects();
   }, []);
 
+  const generateAudio = async (file: FileType) => {
+    const filtered = prospects.filter(
+      (prospect) =>
+        prospect.lieux.country === file.pays && prospect.lieux.region === file.ville
+    );
+    setSelectedFile(file);
+    for (const prospect of filtered) {
+      const formattedText = `Salut monsieur ${prospect.nom} ${prospect.prenom}, vous êtes du ${prospect.lieux.country}, ${prospect.lieux.region}. Merci d'être un membre de notre famille Endorphine.`;
+
+      try {
+        const response = await fetch('/api/text-to-speech', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            text: formattedText,
+            fileName: `${prospect.nom}-${prospect.prenom}.mp3`,  // Pass file name to the server
+          }),
+        });
+        console.log(response)
+
+        if (!response.ok) {
+          throw new Error('Failed to generate audio');
+        }
+
+        const data = await response.json();
+        setAudioFile(data.audioFile);
+      } catch (err: any) {
+        setError(err.message);
+      }
+    }
+  };
+
+
+
   const handleFileClick = (file: FileType) => {
     const filtered = prospects.filter(
       (prospect) =>
@@ -103,6 +144,13 @@ const FilesList: React.FC = () => {
     return <p>No files found.</p>;
   }
 
+
+
+
+
+
+
+
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white border border-gray-300">
@@ -110,7 +158,9 @@ const FilesList: React.FC = () => {
           <tr className="bg-pink-400 border-b text-white">
             <th className="py-2 px-4 text-left">Pays</th>
             <th className="py-2 px-4 text-left">Ville</th>
-            <th className="py-2 px-4 text-left">File URL</th>
+            <th className="py-2 px-4 text-left">Afficher</th>
+            <th className="py-2 px-4 text-left">trasformer en audio</th>
+
           </tr>
         </thead>
         <tbody>
@@ -126,6 +176,16 @@ const FilesList: React.FC = () => {
                   Afficher le contenu
                 </div>
               </td>
+              <td className="py-2 px-4">
+                <div
+                  onClick={() => generateAudio(file)}
+                  className="text-blue-500 hover:underline cursor-pointer"
+                >
+                  Génerer les fichier audios
+                </div>
+              </td>
+
+
             </tr>
           ))}
         </tbody>
@@ -179,35 +239,35 @@ const FilesList: React.FC = () => {
 
       {/* Modal for Text to Speech */}
       {isAudioModalOpen && selectedProspect && (
-  <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-40">
-    <div className="bg-white rounded-lg shadow-lg p-6 max-w-lg w-full">
-      <div className="flex justify-between items-center mb-4 z-60">
-        <h3 className="text-xl font-bold">
-          Generate Audio for {selectedProspect.nom} {selectedProspect.prenom}
-        </h3>
-        <button
-          onClick={closeAudioModal}
-          className="text-gray-600 hover:text-gray-900 text-xl"
-        >
-          &times;
-        </button>
-      </div>
-      <TextToSpeechForm 
-        prospect={selectedProspect} 
-        isOpen={isAudioModalOpen} 
-        onClose={closeAudioModal}
-      />
-      <div className="mt-4">
-        <button
-          onClick={closeAudioModal}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Close
-        </button>
-      </div>
-    </div>
-  </div>
-)}
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-40">
+          <div className="bg-white rounded-lg shadow-lg p-6 max-w-lg w-full">
+            <div className="flex justify-between items-center mb-4 z-60">
+              <h3 className="text-xl font-bold">
+                Generate Audio for {selectedProspect.nom} {selectedProspect.prenom}
+              </h3>
+              <button
+                onClick={closeAudioModal}
+                className="text-gray-600 hover:text-gray-900 text-xl"
+              >
+                &times;
+              </button>
+            </div>
+            <TextToSpeechForm
+              prospect={selectedProspect}
+              isOpen={isAudioModalOpen}
+              onClose={closeAudioModal}
+            />
+            <div className="mt-4">
+              <button
+                onClick={closeAudioModal}
+                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div >
   );

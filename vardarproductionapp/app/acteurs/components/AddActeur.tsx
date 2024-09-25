@@ -74,7 +74,7 @@ export default function AddActeur() {
                     />
                     <Input
                         type='date'
-                        label='Capacité'
+                        label='Date de Naissance'
                         value={dateNaissance}
                         onChange={(e) => setDateNaissance(e.target.value)}
                     />

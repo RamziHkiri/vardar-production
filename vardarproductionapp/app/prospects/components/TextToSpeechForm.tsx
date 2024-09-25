@@ -42,7 +42,10 @@ const TextToSpeechForm: React.FC<TextToSpeechFormProps> = ({ prospect, isOpen, o
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({
+          text: text,
+          fileName: `${prospect.nom}-${prospect.prenom}.mp3`,  // Pass file name to the server
+        }),
       });
 
       if (!response.ok) {
@@ -75,7 +78,7 @@ const TextToSpeechForm: React.FC<TextToSpeechFormProps> = ({ prospect, isOpen, o
     <div>
       <h1>Text to Speech</h1>
       <form onSubmit={handleSubmit}>
-        <button type="submit">Generate Audio</button>
+        <button className='' type="submit">Generate Audio</button>
       </form>
       {audioFile && (
         <div>

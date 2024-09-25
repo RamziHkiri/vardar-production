@@ -8,10 +8,13 @@ const client = new TextToSpeechClient();
 
 export async function POST(req: Request) {
   try {
-    const { text } = await req.json();
+    const { text, fileName } = await req.json();
 
-    if (!text) {
+    if (!text ) {
       return NextResponse.json({ error: 'Text is required' }, { status: 400 });
+    }
+    if (!fileName)  {
+      return NextResponse.json({ error: 'File name is empty' }, { status: 400 });
     }
 
     const request: protos.google.cloud.texttospeech.v1.ISynthesizeSpeechRequest = {
@@ -26,7 +29,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Audio content is empty' }, { status: 500 });
     }
 
-    const audioFilePath = path.join(process.cwd(), 'public/audio/output.mp3');
+    const audioFilePath = path.join(process.cwd(), `/audios/${fileName}`);
 
     // Ensure the directory exists
     fs.mkdirSync(path.dirname(audioFilePath), { recursive: true });

@@ -52,10 +52,10 @@ export default function AddCampagne() {
                     }));
                     setSpectacleList(options);
                 } else {
-                    console.error('Error fetching acteurs:', data);
+                    console.error('Error fetching spectacles:', data);
                 }
             } catch (error) {
-                console.error('Error fetching acteurs:', error);
+                console.error('Error fetching spectacles:', error);
             }
         };
 
@@ -131,12 +131,12 @@ export default function AddCampagne() {
 
             const result = await response.json();
             if (result) {
-                console.log('Acteur added:', result);
+                console.log('campagne added:', result);
             } else {
                 console.error('Error : values errors 1 1 1');
             }
         } catch (error) {
-            console.error('Error saving spectacle:', error);
+            console.error('Error saving campagne:', error);
         }
     };
     console.log(setTheatreId)
@@ -253,7 +253,7 @@ export default function AddCampagne() {
 
 
                     <Button
-                        label='Ajouter un Acteur'
+                        label='Créer Campagne'
                         onClick={handleSubmit}
                     />
                 </div>
